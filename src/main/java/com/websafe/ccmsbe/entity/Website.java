@@ -34,4 +34,12 @@ public class Website {
             cascade = CascadeType.REMOVE
     )
     private List<CookieCategory> cookieCategories = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "website_privacy_regulation",
+            joinColumns = @JoinColumn(name = "website_id", foreignKey = @ForeignKey(name = "fk_website_id_p")),
+            inverseJoinColumns = @JoinColumn(name = "privacy_regulation_id", foreignKey = @ForeignKey(name = "fk_privacy_regulation_id_w"))
+    )
+    private List<PrivacyRegulation> privacyRegulations = new ArrayList<>();
 }

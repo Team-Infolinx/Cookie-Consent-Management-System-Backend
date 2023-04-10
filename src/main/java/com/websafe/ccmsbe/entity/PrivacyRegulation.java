@@ -23,4 +23,9 @@ public class PrivacyRegulation {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "privacy_regulation_geolocation_types")
     private List<String> geolocationTypes = new ArrayList<>();
+
+    @ManyToMany(
+            mappedBy = "privacyRegulations"
+    )
+    private List<Website> websites = new ArrayList<>();
 }
