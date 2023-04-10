@@ -22,4 +22,21 @@ public class Cookie {
     private String path;
     private Date expireDate;
 
+    @ManyToOne
+    @JoinColumn(
+            name = "website_id",
+            nullable = false,
+            referencedColumnName = "websiteId",
+            foreignKey = @ForeignKey(name = "fk_website_id")
+    )
+    private Website website;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "category_id",
+            referencedColumnName = "categoryId",
+            foreignKey = @ForeignKey(name = "category_id")
+    )
+    private CookieCategory cookieCategory;
+
 }

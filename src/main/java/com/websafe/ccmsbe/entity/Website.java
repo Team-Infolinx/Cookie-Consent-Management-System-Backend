@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.catalog.Catalog;
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,4 +22,16 @@ public class Website {
     private String configName;
     private String domain;
     private String userId;
+
+    @OneToMany(
+            mappedBy = "website",
+            cascade = CascadeType.REMOVE
+    )
+    private List<Cookie> cookies = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "website",
+            cascade = CascadeType.REMOVE
+    )
+    private List<CookieCategory> cookieCategories = new ArrayList<>();
 }
