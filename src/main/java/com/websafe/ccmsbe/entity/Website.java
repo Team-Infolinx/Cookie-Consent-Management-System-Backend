@@ -42,4 +42,10 @@ public class Website {
             inverseJoinColumns = @JoinColumn(name = "privacy_regulation_id", foreignKey = @ForeignKey(name = "fk_privacy_regulation_id_w"))
     )
     private List<PrivacyRegulation> privacyRegulations = new ArrayList<>();
+
+    @OneToOne(
+            mappedBy = "website",
+            cascade = CascadeType.REMOVE
+    )
+    private CookieBanner cookieBanner;
 }

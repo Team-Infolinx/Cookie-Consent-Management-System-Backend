@@ -16,6 +16,22 @@ public class CookieBannerTemplate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long templateId;
     private String templateName;
-    private String templateRegulationType;
     private String templateContent;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "cookie_banner_id",
+            referencedColumnName = "bannerId",
+            foreignKey = @ForeignKey(name = "fk_cookie_banner_id_cbt")
+    )
+    private CookieBanner cookieBanner;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "privacy_regulation_id",
+            referencedColumnName = "regulationId",
+            foreignKey = @ForeignKey(name = "fk_privacy_regulation_cbt")
+    )
+    private PrivacyRegulation privacyRegulation;
+
 }

@@ -28,4 +28,9 @@ public class PrivacyRegulation {
             mappedBy = "privacyRegulations"
     )
     private List<Website> websites = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "privacyRegulation"
+    )
+    private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
 }

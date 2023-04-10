@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.lang.annotation.Repeatable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +22,18 @@ public class CookieBanner {
     private String bannerPosition;
     private String bannerColor;
     private String bannerAlignment;
+
+    @OneToOne
+    @JoinColumn(
+            name = "website_id",
+            referencedColumnName = "websiteId",
+            foreignKey = @ForeignKey(name = "fk_website_id_cb")
+    )
+    private Website website;
+
+    @OneToMany(
+            mappedBy = "cookieBanner"
+    )
+    private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
+
 }
