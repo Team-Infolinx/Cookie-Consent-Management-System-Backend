@@ -1,11 +1,12 @@
 package com.websafe.ccmsbe.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,10 @@ import java.util.List;
 public class CookieBanner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bannerId;
+    @Column(name = "banner_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_seq_gen")
+    @SequenceGenerator(name = "my_seq_gen", sequenceName = "my_sequence", initialValue = 100, allocationSize = 1)
+    private Long id;
     private String bannerPosition;
     private String bannerColor;
     private String bannerAlignment;
@@ -37,3 +40,5 @@ public class CookieBanner {
     private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
 
 }
+
+
