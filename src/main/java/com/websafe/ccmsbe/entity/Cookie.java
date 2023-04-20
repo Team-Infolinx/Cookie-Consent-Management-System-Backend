@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Cookie {
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id")
     )
+    @JsonBackReference("website-cookies")
     private Website website;
 
     @ManyToOne
