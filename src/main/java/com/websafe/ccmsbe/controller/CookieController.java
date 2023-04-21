@@ -24,24 +24,11 @@ public class CookieController {
     public List<Cookie> getCookiesToWebsite(@PathVariable(name = "websiteId") Long websiteId) {
         return this.cookieService.getCookiesToWebsite(websiteId);
     }
-//    Not in use -> to remove.
-    @PutMapping("/{websiteId}/setCategories")
-    public List<Cookie> addCookieCategoryToCookies(@PathVariable(name = "websiteId") Long websiteId, @RequestBody List<Cookie> cookies){
-        return cookieService.addCookieCategoryToCookies(websiteId , cookies);
-    }
+
 
     @PostMapping("/{websiteId}/addCookie")
     public Cookie addCookieManually(@PathVariable(name="websiteId") Long websiteId, @RequestBody Cookie cookie) {
         return cookieService.addCookieManually(websiteId, cookie);
-    }
-//  Not in use -> remove.
-    @PutMapping("/{websiteId}/{cookieId}/setCategoryToCookie")
-    public Cookie addCookieCategoryToCookie(
-            @PathVariable(name = "websiteId") Long websiteId,
-            @PathVariable(name = "cookieId") Long cookieId,
-            @RequestBody CookieCategory cookieCategory
-    ){
-        return cookieService.addCookieCategoryToCookie(cookieId,websiteId,cookieCategory);
     }
 
     @DeleteMapping("/{websiteId}/{cookieId}/deleteCookie")

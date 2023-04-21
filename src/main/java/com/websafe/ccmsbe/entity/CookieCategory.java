@@ -21,7 +21,9 @@ public class CookieCategory {
     private Long categoryId;
     private String categoryName;
 
-    @ManyToOne
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
     @JoinColumn(
             name = "website_id",
             referencedColumnName = "websiteId",
