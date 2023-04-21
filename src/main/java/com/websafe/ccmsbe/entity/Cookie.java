@@ -23,9 +23,7 @@ public class Cookie {
     private String path;
     private Date expireDate;
 
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
+    @ManyToOne()
     @JoinColumn(
             name = "website_id",
             nullable = false,
@@ -35,9 +33,7 @@ public class Cookie {
     @JsonBackReference("website-cookies")
     private Website website;
 
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
+    @ManyToOne()
     @JoinColumn(
             name = "category_id",
             referencedColumnName = "categoryId",
