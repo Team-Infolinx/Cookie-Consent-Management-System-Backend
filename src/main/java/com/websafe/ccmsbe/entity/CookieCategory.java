@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,10 +27,14 @@ public class CookieCategory {
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id_cc")
     )
+    @JsonBackReference("website-cookieCategory")
     private Website website;
 
     @OneToMany(
-            mappedBy = "cookieCategory"
+            mappedBy = "cookieCategory",
+            fetch = FetchType.EAGER
     )
+    @JsonBackReference
     private List<Cookie> cookies = new ArrayList<>();
+
 }

@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,16 +23,17 @@ public class Cookie {
     private String path;
     private Date expireDate;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(
             name = "website_id",
             nullable = false,
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id")
     )
+    @JsonBackReference("website-cookies")
     private Website website;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(
             name = "category_id",
             referencedColumnName = "categoryId",

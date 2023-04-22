@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,18 +22,22 @@ public class Website {
     private Long websiteId;
     private String configName;
     private String domain;
-    private String userId;
+    private Long userId;
 
     @OneToMany(
             mappedBy = "website",
-            cascade = CascadeType.REMOVE
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
     )
+    @JsonBackReference
     private List<Cookie> cookies = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "website",
-            cascade = CascadeType.REMOVE
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
     )
+    @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
 
     @ManyToMany
@@ -48,4 +53,16 @@ public class Website {
             cascade = CascadeType.REMOVE
     )
     private CookieBanner cookieBanner;
+
+//    Related to adding new cookie categories to the website.
+    public void addCookieCategoryToWebsite(CookieCategory cookieCategory){
+        cookieCategory.setWebsite(this);
+        cookieCategories.add(cookieCategory);
+    }
+//    Related to adding cookies to website.
+    public void addCookieToWebsite(Cookie cookie) {
+        cookie.setWebsite(this);
+        cookies.add(cookie);
+    }
+
 }
