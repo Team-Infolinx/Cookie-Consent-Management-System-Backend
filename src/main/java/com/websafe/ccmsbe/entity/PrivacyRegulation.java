@@ -1,9 +1,11 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +18,20 @@ import java.util.List;
 public class PrivacyRegulation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "sequence-generator")
+    @GenericGenerator(
+            name = "sequence-generator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "privacy_regulation_sequence"),
+                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+            }
+    )
+    @Column(name = "regulation_id")
     private Long regulationId;
+
+    @Column(name = "regulation_name")
     private String regulationName;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -25,8 +39,11 @@ public class PrivacyRegulation {
     private List<String> geolocationTypes = new ArrayList<>();
 
     @ManyToMany(
-            mappedBy = "privacyRegulations"
+            mappedBy = "privacyRegulations",
+            fetch = FetchType.EAGER
     )
+    @Column(name= "websites")
+    @JsonBackReference
     private List<Website> websites = new ArrayList<>();
 
     @OneToMany(

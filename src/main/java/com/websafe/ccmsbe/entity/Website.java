@@ -40,7 +40,7 @@ public class Website {
     @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "website_privacy_regulation",
             joinColumns = @JoinColumn(name = "website_id", foreignKey = @ForeignKey(name = "fk_website_id_p")),

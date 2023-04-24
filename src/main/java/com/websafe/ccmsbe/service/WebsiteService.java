@@ -63,4 +63,8 @@ public class WebsiteService {
         }
         return null;
     }
+
+    public List<Website> getPrivacyRegulationsFromWebsite(Long websiteId) {
+        return websiteRepository.findByWebsiteId(websiteId);
+    }
 }

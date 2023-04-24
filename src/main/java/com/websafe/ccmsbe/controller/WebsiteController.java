@@ -54,4 +54,9 @@ public class WebsiteController {
         return  websiteService.updateWebsite(userId,website);
     }
 
+    @GetMapping("/website/getPR/{websiteId}")
+    public List<Website> getPrivacyRegulationsFromWebsite(@PathVariable(name = "websiteId") Long websiteId) {
+        return websiteService.getPrivacyRegulationsFromWebsite(websiteId);
+    }
+
 }
