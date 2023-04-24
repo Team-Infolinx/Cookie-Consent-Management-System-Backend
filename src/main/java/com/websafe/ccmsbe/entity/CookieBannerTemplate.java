@@ -13,15 +13,18 @@ import lombok.NoArgsConstructor;
 public class CookieBannerTemplate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_seq_gen1")
+    @SequenceGenerator(name = "my_seq_gen1", sequenceName = "my_sequence1", initialValue = 299, allocationSize = 1)
     private Long templateId;
     private String templateName;
+    private String templateRegulation;
+    @Column(length = 1000)
     private String templateContent;
 
     @ManyToOne
     @JoinColumn(
             name = "cookie_banner_id",
-            referencedColumnName = "bannerId",
+            referencedColumnName = "banner_id",
             foreignKey = @ForeignKey(name = "fk_cookie_banner_id_cbt")
     )
     private CookieBanner cookieBanner;
