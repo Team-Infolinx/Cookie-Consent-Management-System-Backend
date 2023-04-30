@@ -30,7 +30,6 @@ public class Cookie {
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id")
     )
-    @JsonBackReference("website-cookies")
     private Website website;
 
     @ManyToOne()

@@ -46,12 +46,14 @@ public class Website {
             joinColumns = @JoinColumn(name = "website_id", foreignKey = @ForeignKey(name = "fk_website_id_p")),
             inverseJoinColumns = @JoinColumn(name = "privacy_regulation_id", foreignKey = @ForeignKey(name = "fk_privacy_regulation_id_w"))
     )
+    @JsonBackReference("website-privacy-regulation")
     private List<PrivacyRegulation> privacyRegulations = new ArrayList<>();
 
     @OneToOne(
             mappedBy = "website",
             cascade = CascadeType.REMOVE
     )
+    @JsonBackReference("website-cookie-banner")
     private CookieBanner cookieBanner;
 
 //    Related to adding new cookie categories to the website.

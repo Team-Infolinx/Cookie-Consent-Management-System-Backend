@@ -47,5 +47,12 @@ public class CookieController {
         return cookieService.updateCategoryInCookie(cookieId, cookieCategoryId);
     }
 
+    @PutMapping("/updateCookie")
+    public Cookie updateCookie(
+            @RequestBody Cookie cookie
+    ) {
+        return  cookieService.updateCookie(cookie);
+    }
+
 
 }

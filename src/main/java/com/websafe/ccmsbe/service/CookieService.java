@@ -70,4 +70,32 @@ public class CookieService {
         return null;
     }
 
+//    public String updateCookie(Cookie cookie) {
+//        if (cookie != null && cookie.getCookieId() != null && cookie.getWebsite() != null) {
+//            Cookie existingCookie = cookieRepository.findById(cookie.getCookieId()).orElse(null);
+//            if (existingCookie != null) {
+//                existingCookie.setCookieName(cookie.getCookieName());
+//                existingCookie.setDomain(cookie.getDomain());
+//                existingCookie.setPath(cookie.getPath());
+//                existingCookie.setExpireDate(cookie.getExpireDate());
+////                return cookieRepository.save(existingCookie);
+//                return "inside the cookie";
+//            }
+//        }
+//        return "not through the if : " + cookie;
+//    }
+
+    public Cookie updateCookie(Cookie cookie) {
+        if (cookie.getCookieId() != null && cookie.getWebsite() != null) {
+            Cookie existingCookie = cookieRepository.findById(cookie.getCookieId()).orElse(null);
+            if (existingCookie != null) {
+                existingCookie.setCookieName(cookie.getCookieName());
+                existingCookie.setDomain(cookie.getDomain());
+                existingCookie.setPath(cookie.getPath());
+                existingCookie.setExpireDate(cookie.getExpireDate());
+                return cookieRepository.save(existingCookie);
+            }
+        }
+        return null;
+    }
 }
