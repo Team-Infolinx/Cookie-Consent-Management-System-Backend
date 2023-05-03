@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -21,19 +23,19 @@ public class Cookie {
     private String CookieName;
     private String domain;
     private String path;
-    private Date expireDate;
+    private LocalDate expireDate;
+    private LocalTime expireTime;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(
             name = "website_id",
             nullable = false,
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id")
     )
-    @JsonBackReference("website-cookies")
     private Website website;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(
             name = "category_id",
             referencedColumnName = "categoryId",

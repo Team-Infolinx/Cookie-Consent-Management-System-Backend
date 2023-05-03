@@ -27,19 +27,12 @@ public class CookieCategoryService {
         }
         return null;
     }
-    public CookieCategory addNewCategory(Long websiteId , CookieCategory cookieCategory) {
+
+    public CookieCategory addNewCategory(Long websiteId, CookieCategory cookieCategory) {
         Website website = websiteRepository.findById(websiteId).orElse(null);
         if (website != null) {
-            if (cookieCategory.getCategoryName() != null) {
-                List<String> cookieCategoryNames = cookieCategoryRepository.getCookieCategoryNamesByWebsite(website);
-                if(!cookieCategoryNames.contains(cookieCategory.getCategoryName())){
-                    website.addCookieCategoryToWebsite(cookieCategory);
-                    cookieCategoryRepository.save(cookieCategory);
-                    return cookieCategory;
-                }
-                return null;
-            }
-            return null;
+            website.addCookieCategoryToWebsite(cookieCategory);
+            return cookieCategoryRepository.save(cookieCategory);
         }
         return null;
     }
@@ -56,11 +49,12 @@ public class CookieCategoryService {
     }
 
     //Updating cookie category name.
-    public CookieCategory updateCookieCategory(Long categoryId,String newCategoryName) {
-        CookieCategory cookieCategory = cookieCategoryRepository.findById(categoryId).orElse(null);
-        if (cookieCategory != null) {
-            cookieCategory.setCategoryName(newCategoryName);
-            return cookieCategoryRepository.save(cookieCategory);
+    public CookieCategory updateCookieCategory(CookieCategory cookieCategory) {
+        CookieCategory existingCookieCategory = cookieCategoryRepository.findById(cookieCategory.getCategoryId()).orElse(null);
+        if (existingCookieCategory != null) {
+            existingCookieCategory.setCategoryName(cookieCategory.getCategoryName());
+            existingCookieCategory.setCategoryDescription(cookieCategory.getCategoryDescription());
+            return cookieCategoryRepository.save(existingCookieCategory);
         }
         return null;
     }

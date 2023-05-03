@@ -45,7 +45,7 @@ public class WebsiteController {
         return websiteService.deleteWebsite(userId,websiteId);
     }
 
-    @PutMapping("/{userId}/addWebsite")
+    @PutMapping("/{userId}/updateWebsite")
     public Website updateWebsite(
             @PathVariable(name = "userId") Long userId,
             @RequestBody Website website

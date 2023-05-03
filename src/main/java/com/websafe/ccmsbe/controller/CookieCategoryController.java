@@ -48,12 +48,11 @@ public class CookieCategoryController {
         return cookieCategoryService.deleteCookieCategory(websiteId,categoryId);
     }
 
-    @PutMapping("/{categoryId}/updateCategory/{newCategoryName}")
+    @PutMapping("/updateCategory")
     public CookieCategory updateCookieCategory(
-            @PathVariable(name = "categoryId") Long categoryId,
-            @PathVariable(name = "newCategoryName") String categoryName
+            @RequestBody CookieCategory cookieCategory
     ) {
-        return cookieCategoryService.updateCookieCategory(categoryId,categoryName);
+        return cookieCategoryService.updateCookieCategory(cookieCategory);
     }
 
 }
