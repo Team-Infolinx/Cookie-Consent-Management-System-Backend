@@ -27,22 +27,6 @@ public class CookieCategoryService {
         }
         return null;
     }
-//    public CookieCategory addNewCategory(Long websiteId , CookieCategory cookieCategory) {
-//        Website website = websiteRepository.findById(websiteId).orElse(null);
-//        if (website != null) {
-//            if (cookieCategory.getCategoryName() != null) {
-//                List<String> cookieCategoryNames = cookieCategoryRepository.getCookieCategoryNamesByWebsite(website);
-//                if(!cookieCategoryNames.contains(cookieCategory.getCategoryName())){
-//                    website.addCookieCategoryToWebsite(cookieCategory);
-//                    cookieCategoryRepository.save(cookieCategory);
-//                    return cookieCategory;
-//                }
-//                return null;
-//            }
-//            return null;
-//        }
-//        return null;
-//    }
 
     public CookieCategory addNewCategory(Long websiteId, CookieCategory cookieCategory) {
         Website website = websiteRepository.findById(websiteId).orElse(null);

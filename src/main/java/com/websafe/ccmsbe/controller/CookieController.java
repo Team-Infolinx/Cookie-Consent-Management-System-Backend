@@ -47,11 +47,12 @@ public class CookieController {
         return cookieService.updateCategoryInCookie(cookieId, cookieCategoryId);
     }
 
-    @PutMapping("/updateCookie")
+    @PutMapping("/{websiteId}/updateCookie")
     public Cookie updateCookie(
+            @PathVariable(name = "websiteId") Long websiteId,
             @RequestBody Cookie cookie
     ) {
-        return  cookieService.updateCookie(cookie);
+        return  cookieService.updateCookie(websiteId, cookie);
     }
 
 
