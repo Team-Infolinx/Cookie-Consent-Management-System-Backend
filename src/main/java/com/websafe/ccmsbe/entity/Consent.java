@@ -27,4 +27,6 @@ public class Consent {
 //    private List<Category> rejectedCookieCategories = new ArrayList<>();
     private Date createdDate;
     private Time createdAt;
+    private Boolean consent=false;
+
 }
