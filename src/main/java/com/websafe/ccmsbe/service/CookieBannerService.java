@@ -1,6 +1,4 @@
 package com.websafe.ccmsbe.service;
-
-
 import com.websafe.ccmsbe.entity.CookieBanner;
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.repository.CookieBannerRepository;

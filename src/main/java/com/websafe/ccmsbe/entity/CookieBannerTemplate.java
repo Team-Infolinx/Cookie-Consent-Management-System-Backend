@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,8 @@ public class CookieBannerTemplate {
     private Long templateId;
     private String templateName;
     private String templateRegulation;
+    private String templateDefault;
+    private String templatePrivacyPolicyLink;
     @Column(length = 1000)
     private String templateContent;
 
@@ -36,6 +39,7 @@ public class CookieBannerTemplate {
             referencedColumnName = "regulationId",
             foreignKey = @ForeignKey(name = "fk_privacy_regulation_cbt")
     )
+    @JsonIgnoreProperties("privacyRegualtions")
     private PrivacyRegulation privacyRegulation;
 
 }
