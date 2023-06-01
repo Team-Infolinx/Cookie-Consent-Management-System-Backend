@@ -17,6 +17,7 @@ import java.util.List;
 @Table(name = "website")
 public class Website {
 
+    // This is 2nd comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long websiteId;
