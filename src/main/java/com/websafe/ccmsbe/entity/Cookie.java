@@ -23,8 +23,8 @@ public class Cookie {
     private String CookieName;
     private String domain;
     private String path;
-    private LocalDate expireDate;
-    private LocalTime expireTime;
+    private String durationUnit;
+    private Integer expireDuration;
 
     @ManyToOne
     @JoinColumn(

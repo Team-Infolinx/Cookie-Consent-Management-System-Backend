@@ -78,8 +78,8 @@ public class CookieService {
                 existingCookie.setCookieName(cookie.getCookieName());
                 existingCookie.setDomain(cookie.getDomain());
                 existingCookie.setPath(cookie.getPath());
-                existingCookie.setExpireDate(cookie.getExpireDate());
-                existingCookie.setExpireTime(cookie.getExpireTime());
+                existingCookie.setDurationUnit(cookie.getDurationUnit());
+                existingCookie.setExpireDuration(cookie.getExpireDuration());
                 return cookieRepository.save(existingCookie);
             }
         }
