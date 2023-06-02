@@ -13,10 +13,7 @@ import java.util.Optional;
 
 @Service
 public class PrivacyRegulationService {
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     private final PrivacyRegulationRepository privacyRegulationRepository;
 
     private final WebsiteRepository websiteRepository;

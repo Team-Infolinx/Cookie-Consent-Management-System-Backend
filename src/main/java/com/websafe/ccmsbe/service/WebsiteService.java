@@ -67,8 +67,5 @@ public class WebsiteService {
     public List<Website> getPrivacyRegulationsFromWebsite(Long websiteId) {
         return websiteRepository.findByWebsiteId(websiteId);
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }
