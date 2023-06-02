@@ -1,5 +1,9 @@
 package com.websafe.ccmsbe.controller;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import com.websafe.ccmsbe.entity.PrivacyRegulation;
 import com.websafe.ccmsbe.service.PrivacyRegulationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,10 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("api/v1/privacyRegulation")
 public class PrivacyRegulationController {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     private final PrivacyRegulationService privacyRegulationService;
 
     @Autowired
@@ -51,4 +59,10 @@ public class PrivacyRegulationController {
     ){
         return privacyRegulationService.deletePrivacyRegulationFromWebsite(websiteId, regulationId);
     }
+<<<<<<< Updated upstream
 }
+=======
+
+}
+
+>>>>>>> Stashed changes

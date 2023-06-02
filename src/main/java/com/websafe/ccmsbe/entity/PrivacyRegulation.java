@@ -28,7 +28,10 @@ public class PrivacyRegulation {
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
             }
     )
+<<<<<<< Updated upstream
     @Column(name = "regulation_id")
+=======
+>>>>>>> Stashed changes
     private Long regulationId;
 
     @Column(name = "regulation_name")
@@ -39,11 +42,17 @@ public class PrivacyRegulation {
     private List<String> geolocationTypes = new ArrayList<>();
 
     @ManyToMany(
+<<<<<<< Updated upstream
             mappedBy = "privacyRegulations",
             fetch = FetchType.EAGER
     )
     @Column(name= "websites")
     @JsonBackReference
+=======
+            mappedBy = "privacyRegulations"
+    )@JsonBackReference
+    @Column(name= "websites")
+>>>>>>> Stashed changes
     private List<Website> websites = new ArrayList<>();
 
     @OneToMany(

@@ -54,7 +54,11 @@ public class WebsiteController {
         return  websiteService.updateWebsite(userId,website);
     }
 
+<<<<<<< Updated upstream
     @GetMapping("/website/getPR/{websiteId}")
+=======
+    @GetMapping("/getPR/{websiteId}")
+>>>>>>> Stashed changes
     public List<Website> getPrivacyRegulationsFromWebsite(@PathVariable(name = "websiteId") Long websiteId) {
         return websiteService.getPrivacyRegulationsFromWebsite(websiteId);
     }
