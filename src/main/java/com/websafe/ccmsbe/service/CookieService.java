@@ -70,4 +70,19 @@ public class CookieService {
         return null;
     }
 
+    public Cookie updateCookie(Long websiteId, Cookie cookie) {
+        Website website = websiteRepository.findById(websiteId).orElse(null);
+        if (website != null) {
+            Cookie existingCookie = cookieRepository.findById(cookie.getCookieId()).orElse(null);
+            if (existingCookie != null) {
+                existingCookie.setCookieName(cookie.getCookieName());
+                existingCookie.setDomain(cookie.getDomain());
+                existingCookie.setPath(cookie.getPath());
+                existingCookie.setExpireDate(cookie.getExpireDate());
+                existingCookie.setExpireTime(cookie.getExpireTime());
+                return cookieRepository.save(existingCookie);
+            }
+        }
+        return null;
+    }
 }

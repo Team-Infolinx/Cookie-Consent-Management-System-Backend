@@ -17,6 +17,7 @@ import java.util.List;
 @Table(name = "website")
 public class Website {
 
+    // This is 2nd comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long websiteId;
@@ -46,13 +47,19 @@ public class Website {
             joinColumns = @JoinColumn(name = "website_id", foreignKey = @ForeignKey(name = "fk_website_id_p")),
             inverseJoinColumns = @JoinColumn(name = "privacy_regulation_id", foreignKey = @ForeignKey(name = "fk_privacy_regulation_id_w"))
     )
+    @JsonBackReference("website-privacy-regulation")
     private List<PrivacyRegulation> privacyRegulations = new ArrayList<>();
 
     @OneToOne(
             mappedBy = "website",
             cascade = CascadeType.REMOVE
     )
+    @JsonBackReference("website-cookie-banner")
     private CookieBanner cookieBanner;
+
+    @OneToMany(targetEntity = Consent.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "websiteId",referencedColumnName = "websiteId")
+    private List<Consent> consent;
 
 //    Related to adding new cookie categories to the website.
     public void addCookieCategoryToWebsite(CookieCategory cookieCategory){

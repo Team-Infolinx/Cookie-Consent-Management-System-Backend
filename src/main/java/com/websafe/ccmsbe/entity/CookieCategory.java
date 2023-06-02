@@ -20,6 +20,7 @@ public class CookieCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
     private String categoryName;
+    private String categoryDescription;
 
     @ManyToOne
     @JoinColumn(
