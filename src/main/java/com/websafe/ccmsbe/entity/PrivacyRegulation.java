@@ -14,7 +14,6 @@ import java.util.List;
 @Entity(name = "PrivacyRegulation")
 @Table(name = "privacy_regulation")
 public class PrivacyRegulation {
-
     @Id
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
@@ -27,6 +26,7 @@ public class PrivacyRegulation {
             }
     )
     private Long regulationId;
+
     private String regulationName;
 
     @ElementCollection(fetch = FetchType.EAGER)

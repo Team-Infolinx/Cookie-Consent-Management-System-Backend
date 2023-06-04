@@ -8,24 +8,18 @@ import java.util.List;
 import java.util.Objects;
 @Service
 public class WebsiteService {
-
     private final WebsiteRepository websiteRepository;
-
     @Autowired
     public WebsiteService(WebsiteRepository websiteRepository) {
         this.websiteRepository = websiteRepository;
     }
-
     public Website addWebsite(Long userId, Website website) {
         website.setUserId(userId);
         return websiteRepository.save(website);
     }
-
     public List<Website> getWebsiteByUserId(Long userId) {
         return websiteRepository.getWebsitesByUserId(userId);
     }
-
-
     public Boolean deleteWebsite(Long userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElse(null);
         if (website != null) {
@@ -37,7 +31,6 @@ public class WebsiteService {
         }
         return false;
     }
-
     public Website updateWebsite(Long userId, Website updatedWebsite) {
         Website website = websiteRepository.findById((updatedWebsite.getWebsiteId())).orElse(null);
 
@@ -51,7 +44,6 @@ public class WebsiteService {
         }
         return null;
     }
-
     public Website getWebsiteByUserIdAndWebsiteId(Long userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElse(null);
         if (website != null) {
@@ -62,9 +54,7 @@ public class WebsiteService {
         }
         return null;
     }
-
     public List<Website> getPrivacyRegulationsFromWebsite(Long websiteId) {
         return websiteRepository.findByWebsiteId(websiteId);
     }
-
 }

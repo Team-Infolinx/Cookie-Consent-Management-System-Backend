@@ -10,6 +10,5 @@ import java.util.List;
 public interface WebsiteRepository extends JpaRepository<Website , Long> {
     @Query
     public List<Website> getWebsitesByUserId(Long userId);
-
     List<Website> findByWebsiteId(Long websiteId);
 }
