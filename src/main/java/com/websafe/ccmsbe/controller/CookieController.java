@@ -5,7 +5,6 @@ import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.service.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
