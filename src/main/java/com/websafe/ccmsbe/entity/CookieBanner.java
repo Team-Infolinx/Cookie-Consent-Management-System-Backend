@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import java.util.List;
 @Entity(name = "CookieBanner")
 @Table(name = "cookie_banner")
 public class CookieBanner {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bannerId;
@@ -35,5 +32,4 @@ public class CookieBanner {
             mappedBy = "cookieBanner"
     )
     private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
-
 }

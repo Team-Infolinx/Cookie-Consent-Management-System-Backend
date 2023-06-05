@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Entity(name = "CookieBannerTemplate")
 @Table(name = "cookie_banner_template")
 public class CookieBannerTemplate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long templateId;
@@ -33,5 +32,4 @@ public class CookieBannerTemplate {
             foreignKey = @ForeignKey(name = "fk_privacy_regulation_cbt")
     )
     private PrivacyRegulation privacyRegulation;
-
 }

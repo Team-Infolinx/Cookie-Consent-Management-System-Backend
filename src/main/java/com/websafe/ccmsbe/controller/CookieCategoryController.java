@@ -4,12 +4,11 @@ import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.service.CookieCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin
 public class CookieCategoryController {
 
     private final CookieCategoryService cookieCategoryService;
@@ -38,7 +37,6 @@ public class CookieCategoryController {
     ){
         return cookieCategoryService.addCookieCategoryList(websiteId,cookieCategoryList);
     }
-
 
     @DeleteMapping("/{websiteId}/{categoryId}/deleteCategory")
     public Boolean deleteCookieCategory(

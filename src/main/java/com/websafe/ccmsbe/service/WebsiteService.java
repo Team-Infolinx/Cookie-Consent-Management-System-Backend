@@ -2,17 +2,18 @@ package com.websafe.ccmsbe.service;
 
 import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.entity.Website;
+import com.websafe.ccmsbe.exception.AccessDeniedException;
+import com.websafe.ccmsbe.exception.WebsiteNotFoundException;
 import com.websafe.ccmsbe.repository.CookieCategoryRepository;
 import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Service
 public class WebsiteService {
-
     private final WebsiteRepository websiteRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
 
@@ -61,45 +62,41 @@ public class WebsiteService {
         return defaultCategories;
     }
 
-    public List<Website> getWebsiteByUserId(Long userId) {
+    public List<Website> getWebsitesByUserId(Long userId) {
         return websiteRepository.getWebsitesByUserId(userId);
     }
 
-
     public Boolean deleteWebsite(Long userId, Long websiteId) {
-        Website website = websiteRepository.findById(websiteId).orElse(null);
-        if (website != null) {
-            if(Objects.equals(website.getUserId(), userId)) {
-                websiteRepository.deleteById(websiteId);
-                return true;
-            }
-            return false;
+        Website website = websiteRepository.findById(websiteId).orElseThrow(
+                () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
+        );
+        if(!Objects.equals(website.getUserId(), userId)) {
+            throw new AccessDeniedException("User not found with id : " + userId);
         }
-        return false;
+        websiteRepository.deleteById(websiteId);
+        return true;
     }
 
     public Website updateWebsite(Long userId, Website updatedWebsite) {
-        Website website = websiteRepository.findById((updatedWebsite.getWebsiteId())).orElse(null);
-
-        if (website != null) {
-            if (Objects.equals(website.getUserId(), userId)) { //changed was done here.
-                website.setConfigName(updatedWebsite.getConfigName());
-                website.setDomain(updatedWebsite.getDomain());
-                return websiteRepository.save(website);
-            }
-            return null;
+        Long websiteId = updatedWebsite.getWebsiteId();
+        Website website = websiteRepository.findById(websiteId).orElseThrow(
+                () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
+        );
+        if (!Objects.equals(website.getUserId(), userId)) {
+            throw new AccessDeniedException("User not found with id : " + userId);
         }
-        return null;
+        website.setConfigName(updatedWebsite.getConfigName());
+        website.setDomain(updatedWebsite.getDomain());
+        return websiteRepository.save(website);
     }
 
     public Website getWebsiteByUserIdAndWebsiteId(Long userId, Long websiteId) {
-        Website website = websiteRepository.findById(websiteId).orElse(null);
-        if (website != null) {
-            if (Objects.equals(website.getUserId(), userId)) {
-                return website;
-            }
-            return null;
+        Website website = websiteRepository.findById(websiteId).orElseThrow(
+                () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
+        );
+        if (!Objects.equals(website.getUserId(), userId)) {
+            throw new AccessDeniedException("User not found with id : " + userId);
         }
-        return null;
+        return website;
     }
 }
