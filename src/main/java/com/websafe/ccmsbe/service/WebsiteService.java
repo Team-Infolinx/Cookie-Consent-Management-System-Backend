@@ -13,6 +13,11 @@ public class WebsiteService {
     public WebsiteService(WebsiteRepository websiteRepository) {
         this.websiteRepository = websiteRepository;
     }
+    public class WebsiteNotFoundException extends RuntimeException {
+        public WebsiteNotFoundException(String message) {
+            super(message);
+        }
+    }
     public Website addWebsite(Long userId, Website website) {
         website.setUserId(userId);
         return websiteRepository.save(website);
@@ -55,6 +60,18 @@ public class WebsiteService {
         return null;
     }
     public List<Website> getPrivacyRegulationsFromWebsite(Long websiteId) {
-        return websiteRepository.findByWebsiteId(websiteId);
+        try {
+            List<Website> websites = websiteRepository.findByWebsiteId(websiteId);
+            if (websites.isEmpty()) {
+                throw new WebsiteNotFoundException("Website not found with ID: " + websiteId);
+            }
+            return websites;
+        } catch (WebsiteNotFoundException e) {
+            // Handle the custom exception appropriately
+            throw e; // Re-throw the exception to be handled at a higher level
+        } catch (Exception e) {
+            // Handle other exceptions if needed
+            throw new RuntimeException("An error occurred while retrieving privacy regulations from the website");
+        }
     }
 }

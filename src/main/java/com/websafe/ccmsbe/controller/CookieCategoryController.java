@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin
 public class CookieCategoryController {
 
     private final CookieCategoryService cookieCategoryService;
