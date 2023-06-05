@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1/websites/{websiteId}/cookie-categories")
 @CrossOrigin
 public class CookieCategoryController {
-
     private final CookieCategoryService cookieCategoryService;
 
     @Autowired
@@ -18,19 +17,19 @@ public class CookieCategoryController {
         this.cookieCategoryService = cookieCategoryService;
     }
 
-    @GetMapping("/{websiteId}/getCookieCategories")
+    @GetMapping
     public List<CookieCategory> getCookieCategories(
             @PathVariable(name = "websiteId") Long websiteId
     ){
         return cookieCategoryService.getCookieCategories(websiteId);
     }
 
-    @PostMapping("/{websiteId}/addCookieCategory")
+    @PostMapping
     public CookieCategory addNewCategory(@PathVariable(name = "websiteId") Long websiteId , @RequestBody CookieCategory cookieCategory) {
         return cookieCategoryService.addNewCategory(websiteId , cookieCategory);
     }
 
-    @PostMapping("/{websiteId}/addCookieCategoryList")
+    @PostMapping("/list")
     public List<CookieCategory> addCookieCategoryList(
             @PathVariable(name = "websiteId") Long websiteId,
             @RequestBody List<CookieCategory> cookieCategoryList
@@ -38,7 +37,7 @@ public class CookieCategoryController {
         return cookieCategoryService.addCookieCategoryList(websiteId,cookieCategoryList);
     }
 
-    @DeleteMapping("/{websiteId}/{categoryId}/deleteCategory")
+    @DeleteMapping("/{categoryId}")
     public Boolean deleteCookieCategory(
             @PathVariable(name = "websiteId") Long websiteId,
             @PathVariable(name = "categoryId") Long categoryId
@@ -46,11 +45,12 @@ public class CookieCategoryController {
         return cookieCategoryService.deleteCookieCategory(websiteId,categoryId);
     }
 
-    @PutMapping("/updateCategory")
+    @PutMapping("/{categoryId}")
     public CookieCategory updateCookieCategory(
+            @PathVariable (name = "websiteId") Long websiteId,
+            @PathVariable (name = "categoryId") Long categoryId,
             @RequestBody CookieCategory cookieCategory
     ) {
-        return cookieCategoryService.updateCookieCategory(cookieCategory);
+        return cookieCategoryService.updateCookieCategory(websiteId, categoryId, cookieCategory);
     }
-
 }

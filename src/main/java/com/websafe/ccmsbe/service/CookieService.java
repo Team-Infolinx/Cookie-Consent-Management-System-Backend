@@ -70,11 +70,10 @@ public class CookieService {
         return cookieRepository.save(cookie);
     }
 
-    public Cookie updateCookie(Long websiteId, Cookie cookie) {
+    public Cookie updateCookie(Long websiteId, Long cookieId, Cookie cookie) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
-        Long cookieId = cookie.getCookieId();
         Cookie existingCookie = cookieRepository.findById(cookieId).orElseThrow(
                 () -> new CookieNotFoundException("Cookie not found with id " + cookieId)
         );

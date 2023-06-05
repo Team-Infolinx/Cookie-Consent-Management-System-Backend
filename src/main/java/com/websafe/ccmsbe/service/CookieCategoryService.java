@@ -47,8 +47,10 @@ public class CookieCategoryService {
         return true;
     }
 
-    public CookieCategory updateCookieCategory(CookieCategory cookieCategory) {
-        Long categoryId = cookieCategory.getCategoryId();
+    public CookieCategory updateCookieCategory(Long websiteId, Long categoryId, CookieCategory cookieCategory) {
+        Website website = websiteRepository.findById(websiteId).orElseThrow(
+                () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
+        );
         CookieCategory existingCookieCategory = cookieCategoryRepository.findById(categoryId).orElseThrow(
                 () -> new CookieCategoryNotFoundException("Cookie category not found with id" + categoryId)
         );
@@ -57,7 +59,7 @@ public class CookieCategoryService {
         return cookieCategoryRepository.save(existingCookieCategory);
     }
 
-//    Not using.
+    // Not using.
     public List<CookieCategory> addCookieCategoryList(Long websiteId, List<CookieCategory> cookieCategoryList) {
         Website website = websiteRepository.findById(websiteId).orElse(null);
         if (website != null) {

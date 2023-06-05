@@ -77,8 +77,7 @@ public class WebsiteService {
         return true;
     }
 
-    public Website updateWebsite(Long userId, Website updatedWebsite) {
-        Long websiteId = updatedWebsite.getWebsiteId();
+    public Website updateWebsite(Long userId, Long websiteId, Website updatedWebsite) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
