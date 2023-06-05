@@ -1,17 +1,14 @@
 package com.websafe.ccmsbe.controller;
-
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.service.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/api/v1/users/{userId}/websites")
+@CrossOrigin
 public class WebsiteController {
-
     private final WebsiteService websiteService;
 
     @Autowired
@@ -19,12 +16,12 @@ public class WebsiteController {
         this.websiteService = websiteService;
     }
 
-    @GetMapping("/{userId}/getWebsites")
+    @GetMapping
     public List<Website> getAllWebsitesByUserId(@PathVariable(name = "userId") Long userId) {
-        return websiteService.getWebsiteByUserId(userId);
+        return websiteService.getWebsitesByUserId(userId);
     }
 
-    @GetMapping("/{userId}/{websiteId}/getWebsite")
+    @GetMapping("/{websiteId}")
     public Website getWebsiteByUserIdAndWebsiteId(
             @PathVariable(name = "userId") Long userId,
             @PathVariable(name = "websiteId") Long websiteId
@@ -32,12 +29,12 @@ public class WebsiteController {
         return websiteService.getWebsiteByUserIdAndWebsiteId(userId,websiteId);
     }
 
-    @PostMapping("/{userId}/addWebsite")
+    @PostMapping
     public Website addWebsite(@PathVariable(name = "userId") Long userId, @RequestBody Website website){
         return websiteService.addWebsite(userId,website);
     }
 
-    @DeleteMapping("/{userId}/{websiteId}/deleteWebsite")
+    @DeleteMapping("/{websiteId}")
     public Boolean deleteWebsite(
             @PathVariable(name = "userId") Long userId,
             @PathVariable(name = "websiteId") Long websiteId
@@ -45,13 +42,14 @@ public class WebsiteController {
         return websiteService.deleteWebsite(userId,websiteId);
     }
 
-    @PutMapping("/{userId}/updateWebsite")
+    @PutMapping("/{websiteId}")
     public Website updateWebsite(
             @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "websiteId") Long websiteId,
             @RequestBody Website website
 
     ){
-        return  websiteService.updateWebsite(userId,website);
+        return  websiteService.updateWebsite(userId,websiteId,website);
     }
 
 }

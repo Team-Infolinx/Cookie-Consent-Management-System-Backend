@@ -1,12 +1,9 @@
 package com.websafe.ccmsbe.entity;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.xml.catalog.Catalog;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +13,6 @@ import java.util.List;
 @Entity(name = "Website")
 @Table(name = "website")
 public class Website {
-
-    // This is 2nd comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long websiteId;
@@ -61,15 +56,15 @@ public class Website {
     @JoinColumn(name = "websiteId",referencedColumnName = "websiteId")
     private List<Consent> consent;
 
-//    Related to adding new cookie categories to the website.
+    // Related to adding new cookie categories to the website.
     public void addCookieCategoryToWebsite(CookieCategory cookieCategory){
         cookieCategory.setWebsite(this);
         cookieCategories.add(cookieCategory);
     }
-//    Related to adding cookies to website.
+
+    // Related to adding cookies to website.
     public void addCookieToWebsite(Cookie cookie) {
         cookie.setWebsite(this);
         cookies.add(cookie);
     }
-
 }
