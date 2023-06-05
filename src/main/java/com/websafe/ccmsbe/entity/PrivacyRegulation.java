@@ -43,4 +43,5 @@ public class PrivacyRegulation {
             mappedBy = "privacyRegulation"
     )
     private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
+
 }
