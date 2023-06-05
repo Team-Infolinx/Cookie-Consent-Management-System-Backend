@@ -5,7 +5,6 @@ import com.websafe.ccmsbe.service.CookieBannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping(value="api/banner")
@@ -36,4 +35,10 @@ public class CookieBannerController {
     public CookieBanner updateBanner(@RequestBody CookieBanner cookieBanner){
         return cookieBannerService.updateBanner(cookieBanner);
     }
+
+    @PutMapping("/updateBanner/{websiteId}")
+    public CookieBanner updateById(@PathVariable Long websiteId,@RequestBody CookieBanner cookieBanner){
+        return cookieBannerService.updateById(websiteId,cookieBanner);
+    }
+
 }

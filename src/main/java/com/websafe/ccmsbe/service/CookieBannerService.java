@@ -6,6 +6,8 @@ import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class CookieBannerService {
@@ -48,6 +50,21 @@ public class CookieBannerService {
 
     public CookieBanner updateBanner(CookieBanner cookieBanner) {
         return cookieBannerRepository.save(cookieBanner);
+    }
+
+    public CookieBanner updateById(Long websiteId, CookieBanner cookieBanner) {
+        Website website = websiteRepository.findById(websiteId).orElse(null);
+        if (website != null) {
+            Optional<CookieBanner> optionalCookieBanner = Optional.ofNullable(website.getCookieBanner());
+            if (optionalCookieBanner.isPresent()) {
+                CookieBanner banner = optionalCookieBanner.get();
+                banner.setBannerPosition(cookieBanner.getBannerPosition());
+                banner.setBannerAlignment(cookieBanner.getBannerAlignment());
+                banner.setBannerColor(cookieBanner.getBannerColor());
+                return cookieBannerRepository.save(banner);
+            }
+        }
+        return null;
     }
 
 
