@@ -1,14 +1,9 @@
 package com.websafe.ccmsbe.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,15 +11,14 @@ import java.util.Date;
 @Entity(name = "Cookie")
 @Table(name = "cookie")
 public class Cookie {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cookieId;
     private String CookieName;
     private String domain;
     private String path;
-    private LocalDate expireDate;
-    private LocalTime expireTime;
+    private String durationUnit;
+    private Integer expireDuration;
 
     @ManyToOne
     @JoinColumn(
@@ -42,5 +36,4 @@ public class Cookie {
             foreignKey = @ForeignKey(name = "category_id")
     )
     private CookieCategory cookieCategory;
-
 }
