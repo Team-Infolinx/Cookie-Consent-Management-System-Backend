@@ -1,4 +1,5 @@
 package com.websafe.ccmsbe.controller;
+
 import com.websafe.ccmsbe.entity.Cookie;
 import com.websafe.ccmsbe.service.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import java.util.List;
 @RequestMapping("/api/v1/websites/{websiteId}/cookies")
 @CrossOrigin
 public class CookieController {
+
     private final CookieService cookieService;
 
     @Autowired
@@ -51,4 +53,5 @@ public class CookieController {
     ) {
         return  cookieService.updateCookie(websiteId, cookieId, cookie);
     }
+
 }

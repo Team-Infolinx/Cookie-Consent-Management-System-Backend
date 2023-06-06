@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class CookieCategoryService {
+
     private final CookieCategoryRepository cookieCategoryRepository;
     private final WebsiteRepository websiteRepository;
 
@@ -69,4 +70,5 @@ public class CookieCategoryService {
         }
         return null;
     }
+
 }
