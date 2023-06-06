@@ -1,4 +1,5 @@
 package com.websafe.ccmsbe.entity;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
