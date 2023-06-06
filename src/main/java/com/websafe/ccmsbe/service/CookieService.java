@@ -15,6 +15,7 @@ import java.util.List;
 
 @Service
 public class CookieService {
+
     private final WebsiteRepository websiteRepository;
     private final CookieRepository cookieRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
@@ -84,4 +85,5 @@ public class CookieService {
         existingCookie.setExpireDuration(cookie.getExpireDuration());
         return cookieRepository.save(existingCookie);
     }
+
 }

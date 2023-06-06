@@ -14,6 +14,7 @@ import java.util.Objects;
 
 @Service
 public class WebsiteService {
+
     private final WebsiteRepository websiteRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
 
@@ -98,4 +99,5 @@ public class WebsiteService {
         }
         return website;
     }
+
 }

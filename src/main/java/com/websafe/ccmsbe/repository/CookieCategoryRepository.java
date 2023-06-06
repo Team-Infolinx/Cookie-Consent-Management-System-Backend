@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CookieCategoryRepository extends JpaRepository<CookieCategory,Long> {
+
     @Query
     public List<CookieCategory> getCookieCategoriesByWebsiteEquals(Website website);
 
@@ -17,4 +18,5 @@ public interface CookieCategoryRepository extends JpaRepository<CookieCategory,L
 
     @Query
     public CookieCategory findByCategoryIdAndWebsite(Long categoryId , Website website);
+
 }
