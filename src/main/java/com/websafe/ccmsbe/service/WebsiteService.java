@@ -8,23 +8,22 @@ import com.websafe.ccmsbe.repository.CookieCategoryRepository;
 import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Service
 public class WebsiteService {
+
     private final WebsiteRepository websiteRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
+
     @Autowired
     public WebsiteService(WebsiteRepository websiteRepository, CookieCategoryRepository cookieCategoryRepository) {
         this.websiteRepository = websiteRepository;
         this.cookieCategoryRepository = cookieCategoryRepository;
     }
-    public class WebsiteNotFoundException extends RuntimeException {
-        public WebsiteNotFoundException(String message) {
-            super(message);
-        }
-    }
+
     public Website addWebsite(Long userId, Website website) {
         website.setUserId(userId);
         Website websiteSaved =  websiteRepository.save(website);
@@ -33,7 +32,7 @@ public class WebsiteService {
         websiteSaved.setCookieCategories(defaultCategories);
         return websiteSaved;
     }
- 
+
     private List<CookieCategory> createDefaultCategories(Website website) {
         List<CookieCategory> defaultCategories = new ArrayList<>();
 
@@ -90,6 +89,7 @@ public class WebsiteService {
         website.setDomain(updatedWebsite.getDomain());
         return websiteRepository.save(website);
     }
+
     public Website getWebsiteByUserIdAndWebsiteId(Long userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
@@ -99,19 +99,22 @@ public class WebsiteService {
         }
         return website;
     }
+
     public List<Website> getPrivacyRegulationsFromWebsite(Long websiteId) {
         try {
             List<Website> websites = websiteRepository.findByWebsiteId(websiteId);
+
             if (websites.isEmpty()) {
                 throw new WebsiteNotFoundException("Website not found with ID: " + websiteId);
             }
             return websites;
+
         } catch (WebsiteNotFoundException e) {
-            // Handle the custom exception appropriately
-            throw e; // Re-throw the exception to be handled at a higher level
+            throw e;
+
         } catch (Exception e) {
-            // Handle other exceptions if needed
             throw new RuntimeException("An error occurred while retrieving privacy regulations from the website");
         }
     }
+
 }

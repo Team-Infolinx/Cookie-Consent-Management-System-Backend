@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-apping("api/v1/")
 @RequestMapping("/api/v1/websites/{websiteId}/cookies")
 @CrossOrigin
 public class CookieController {

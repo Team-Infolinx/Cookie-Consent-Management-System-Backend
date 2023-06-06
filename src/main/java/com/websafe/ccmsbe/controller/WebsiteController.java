@@ -1,13 +1,16 @@
 package com.websafe.ccmsbe.controller;
+
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.service.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users/{userId}/websites")
 @CrossOrigin
 public class WebsiteController {
+
     private final WebsiteService websiteService;
 
     @Autowired
@@ -50,8 +53,10 @@ public class WebsiteController {
     ){
         return  websiteService.updateWebsite(userId,websiteId,website);
     }
+
     @GetMapping("/{websiteId}/privacy-regulations")
     public List<Website> getPrivacyRegulationsFromWebsite(@PathVariable(name = "websiteId") Long websiteId) {
         return websiteService.getPrivacyRegulationsFromWebsite(websiteId);
     }
+
 }

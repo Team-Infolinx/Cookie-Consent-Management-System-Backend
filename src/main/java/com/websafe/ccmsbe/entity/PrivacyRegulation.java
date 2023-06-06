@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import java.util.ArrayList;
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -35,7 +36,8 @@ public class PrivacyRegulation {
 
     @ManyToMany(
             mappedBy = "privacyRegulations"
-    )@JsonBackReference
+    )
+    @JsonBackReference
     @Column(name= "websites")
     private List<Website> websites = new ArrayList<>();
 
