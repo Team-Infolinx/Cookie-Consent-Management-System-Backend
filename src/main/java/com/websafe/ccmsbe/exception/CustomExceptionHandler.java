@@ -58,4 +58,5 @@ public class CustomExceptionHandler {
         );
         return new ResponseEntity<>(customException, notFound);
     }
+
 }

@@ -1,4 +1,5 @@
 package com.websafe.ccmsbe.entity;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity(name = "Website")
 @Table(name = "website")
 public class Website {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long websiteId;
@@ -67,4 +69,5 @@ public class Website {
         cookie.setWebsite(this);
         cookies.add(cookie);
     }
+
 }

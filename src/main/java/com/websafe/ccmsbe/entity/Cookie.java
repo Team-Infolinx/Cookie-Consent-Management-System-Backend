@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity(name = "Cookie")
 @Table(name = "cookie")
 public class Cookie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cookieId;
@@ -36,4 +37,5 @@ public class Cookie {
             foreignKey = @ForeignKey(name = "category_id")
     )
     private CookieCategory cookieCategory;
+
 }

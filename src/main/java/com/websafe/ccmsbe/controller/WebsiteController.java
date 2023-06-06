@@ -1,4 +1,5 @@
 package com.websafe.ccmsbe.controller;
+
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.service.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import java.util.List;
 @RequestMapping("/api/v1/users/{userId}/websites")
 @CrossOrigin
 public class WebsiteController {
+
     private final WebsiteService websiteService;
 
     @Autowired
