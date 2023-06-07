@@ -44,6 +44,7 @@ public class PrivacyRegulationService {
         }
     }
 
+
     //User define exception for PrivacyRegulationRetrieval errors
     public static class PrivacyRegulationRetrievalException extends RuntimeException {
         public PrivacyRegulationRetrievalException(String message) {

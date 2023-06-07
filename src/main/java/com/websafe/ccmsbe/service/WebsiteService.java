@@ -116,8 +116,4 @@ public class WebsiteService {
             throw new RuntimeException("An error occurred while retrieving privacy regulations from the website");
         }
     }
-
 }
-
-}
-
