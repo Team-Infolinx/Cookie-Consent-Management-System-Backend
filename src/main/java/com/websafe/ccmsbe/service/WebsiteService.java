@@ -108,12 +108,11 @@ public class WebsiteService {
                 throw new WebsiteNotFoundException("Website not found with ID: " + websiteId);
             }
             return websites;
-
         } catch (WebsiteNotFoundException e) {
             throw e;
-
         } catch (Exception e) {
             throw new RuntimeException("An error occurred while retrieving privacy regulations from the website");
         }
     }
 }
+

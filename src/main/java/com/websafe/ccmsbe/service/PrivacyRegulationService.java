@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PrivacyRegulationService {
@@ -44,7 +43,6 @@ public class PrivacyRegulationService {
         }
     }
 
-
     //User define exception for PrivacyRegulationRetrieval errors
     public static class PrivacyRegulationRetrievalException extends RuntimeException {
         public PrivacyRegulationRetrievalException(String message) {
@@ -63,7 +61,6 @@ public class PrivacyRegulationService {
             if (privacyRegulation == null) {
                 throw new IllegalArgumentException("Privacy regulation cannot be null");
             }
-
             return privacyRegulationRepository.save(privacyRegulation);
         } catch (IllegalArgumentException e) {
             throw e;
@@ -126,7 +123,6 @@ public class PrivacyRegulationService {
             if (removed) {
                 website.setPrivacyRegulations(privacyRegulations);
                 websiteRepository.save(website);
-
                 return ("Privacy regulation with ID:" + regulationId + " is deleted successfully");
             } else {
                 throw new PrivacyRegulationNotFoundException("Privacy regulation with ID: " + regulationId +
@@ -134,7 +130,6 @@ public class PrivacyRegulationService {
             }
         } catch (WebsiteNotFoundException | PrivacyRegulationNotFoundException e) {
             return e.getMessage();
-
         } catch (Exception e) {
             return "An error occurred while deleting the privacy regulation";
         }
@@ -149,10 +144,7 @@ public class PrivacyRegulationService {
 
             existingRegulation.setRegulationName(privacyRegulation.getRegulationName());
 
-            //existingRegulation.setRegulationDescription(privacyRegulation.getRegulationDescription());
-
             return privacyRegulationRepository.save(existingRegulation);
-
         } catch (PrivacyRegulationNotFoundException e) {
             throw e;
         } catch (Exception e) {

@@ -11,6 +11,7 @@ import java.util.List;
 @RequestMapping("api/v1/website-management")
 public class PrivacyRegulationController {
     private final PrivacyRegulationService privacyRegulationService;
+
     @Autowired
     public PrivacyRegulationController(PrivacyRegulationService privacyRegulationService) {
         this.privacyRegulationService = privacyRegulationService;
@@ -50,4 +51,3 @@ public class PrivacyRegulationController {
         return privacyRegulationService.deletePrivacyRegulationFromWebsite(websiteId, regulationId);
     }
 }
-
