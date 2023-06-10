@@ -1,14 +1,9 @@
 package com.websafe.ccmsbe.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,8 +18,8 @@ public class Cookie {
     private String CookieName;
     private String domain;
     private String path;
-    private LocalDate expireDate;
-    private LocalTime expireTime;
+    private String durationUnit;
+    private Integer expireDuration;
 
     @ManyToOne
     @JoinColumn(

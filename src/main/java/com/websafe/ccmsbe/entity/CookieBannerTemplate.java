@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Entity(name = "CookieBannerTemplate")
 @Table(name = "cookie_banner_template")
 public class CookieBannerTemplate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "template_id_generator")
     @SequenceGenerator(name = "template_id_generator",sequenceName = "template_id_seq",initialValue = 6000,allocationSize = 1)
@@ -41,5 +40,4 @@ public class CookieBannerTemplate {
     )
     @JsonIgnoreProperties("privacyRegualtions")
     private PrivacyRegulation privacyRegulation;
-
 }
