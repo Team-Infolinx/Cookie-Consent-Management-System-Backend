@@ -1,7 +1,6 @@
 package com.websafe.ccmsbe.exception;
 
-public class
-WebsiteNotFoundException extends RuntimeException{
+public class WebsiteNotFoundException extends RuntimeException{
 
     public WebsiteNotFoundException(String message) {
         super(message);
