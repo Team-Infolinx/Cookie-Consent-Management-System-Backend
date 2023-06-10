@@ -1,5 +1,4 @@
 package com.websafe.ccmsbe.service;
-
 import com.websafe.ccmsbe.entity.Cookie;
 import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.entity.Website;

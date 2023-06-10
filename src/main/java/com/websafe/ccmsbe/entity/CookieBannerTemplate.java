@@ -38,6 +38,6 @@ public class CookieBannerTemplate {
             referencedColumnName = "regulationId",
             foreignKey = @ForeignKey(name = "fk_privacy_regulation_cbt")
     )
-    @JsonIgnoreProperties("privacyRegualtions")
+    @JsonIgnoreProperties("privacyRegulations")
     private PrivacyRegulation privacyRegulation;
 }
