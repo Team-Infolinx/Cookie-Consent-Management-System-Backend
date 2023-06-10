@@ -1,5 +1,5 @@
 package com.websafe.ccmsbe.entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @Entity(name = "PrivacyRegulation")
 @Table(name = "privacy_regulation")
+@JsonIgnoreProperties("cookieBannerTemplates")
 public class PrivacyRegulation {
     @Id
     @GeneratedValue(generator = "sequence-generator")
@@ -40,6 +41,7 @@ public class PrivacyRegulation {
     @JsonBackReference
     @Column(name= "websites")
     private List<Website> websites = new ArrayList<>();
+
 
     @OneToMany(
             mappedBy = "privacyRegulation"

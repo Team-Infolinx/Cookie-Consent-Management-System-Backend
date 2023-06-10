@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.swing.text.html.parser.Entity;
 import java.time.ZonedDateTime;
 
 @RestControllerAdvice
@@ -57,6 +59,33 @@ public class CustomExceptionHandler {
                 ZonedDateTime.now()
         );
         return new ResponseEntity<>(customException, notFound);
+    }
+
+    @ExceptionHandler(value = {TemplateNotFoundException.class})
+    public ResponseEntity<Object> handleTemplateNotFoundException(
+            TemplateNotFoundException exception
+    ){
+        HttpStatus notFound = HttpStatus.NOT_FOUND;
+        CustomException customException = new CustomException(
+                exception.getMessage(),
+                notFound,
+                ZonedDateTime.now()
+        );
+        return new ResponseEntity<>(customException,notFound);
+    }
+
+    @ExceptionHandler(value = {BannerNotFoundException.class})
+    public ResponseEntity<Object> handleBannerNotFoundException(
+            BannerNotFoundException exception
+    ){
+        HttpStatus notFound = HttpStatus.NOT_FOUND;
+        CustomException customException =new CustomException(
+                exception.getMessage(),
+                notFound,
+                ZonedDateTime.now()
+        );
+        return new ResponseEntity<>(customException,notFound);
+
     }
 
 }

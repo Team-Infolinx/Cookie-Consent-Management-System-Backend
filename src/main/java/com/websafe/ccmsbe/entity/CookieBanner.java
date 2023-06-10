@@ -1,9 +1,11 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +15,17 @@ import java.util.List;
 @Entity(name = "CookieBanner")
 @Table(name = "cookie_banner")
 public class CookieBanner {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bannerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "banner_id_generator")
+    @SequenceGenerator(name = "banner_id_generator", sequenceName = "banner_id_seq", initialValue = 4000, allocationSize = 1)
+    @Column(name = "bannerId")
+    private Long id;
     private String bannerPosition;
     private String bannerColor;
     private String bannerAlignment;
+    private String bannerTextColor;
 
     @OneToOne
     @JoinColumn(
@@ -26,10 +33,16 @@ public class CookieBanner {
             referencedColumnName = "websiteId",
             foreignKey = @ForeignKey(name = "fk_website_id_cb")
     )
+
+    @JsonBackReference
     private Website website;
 
     @OneToMany(
             mappedBy = "cookieBanner"
     )
+    @JsonBackReference("banner template")
     private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
+
 }
+
+
