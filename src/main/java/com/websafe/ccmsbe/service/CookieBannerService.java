@@ -61,6 +61,7 @@ public class CookieBannerService {
                 banner.setBannerPosition(cookieBanner.getBannerPosition());
                 banner.setBannerAlignment(cookieBanner.getBannerAlignment());
                 banner.setBannerColor(cookieBanner.getBannerColor());
+                banner.setBannerTextColor(cookieBanner.getBannerTextColor());
                 return cookieBannerRepository.save(banner);
             }
         }

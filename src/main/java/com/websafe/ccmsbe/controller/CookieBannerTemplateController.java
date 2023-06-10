@@ -22,22 +22,22 @@ public class CookieBannerTemplateController {
     }
 
 
-    @GetMapping("getTemplate/{bannerId}")
+   /* @GetMapping("getTemplate/{bannerId}")
     public List<CookieBannerTemplate> getTemplateByID(@PathVariable(name = "bannerId") Long bannerId){
 
         return cookieBannerTemplateService.getTemplateByID(bannerId);
-    }
+    }*/
 
 
-    @PostMapping("saveTemplate/{bannerId}")
+   /* @PostMapping("saveTemplate/{bannerId}")
     public CookieBannerTemplate saveNewTemplate(
             @PathVariable(name = "bannerId") Long bannerId,
             @RequestBody CookieBannerTemplate cookieBannerTemplate)
     {
         return cookieBannerTemplateService.saveNewTemplate(bannerId, cookieBannerTemplate);
-    }
+    }*/
 
-    @DeleteMapping("deleteTemplate/{id}")
+   /* @DeleteMapping("deleteTemplate/{id}")
     public String deleteTemplate(@PathVariable Long id){
         return cookieBannerTemplateService.deleteTemplate(id);
     }
@@ -45,7 +45,7 @@ public class CookieBannerTemplateController {
     @PutMapping("updateTemplate")
     public CookieBannerTemplate updateTemplate(@RequestBody CookieBannerTemplate cookieBannerTemplate){
         return cookieBannerTemplateService.updateTemplate(cookieBannerTemplate);
-    }
+    }*/
 
 
     @PutMapping("updateTemplateID/{id}")
@@ -54,11 +54,11 @@ public class CookieBannerTemplateController {
 
     }
 
-    @PutMapping("templateDefault/{id}")
+   /* @PutMapping("templateDefault/{id}")
     public CookieBannerTemplate updateTemplateDefault(@PathVariable Long id, @RequestBody CookieBannerTemplate cookieBannerTemplate) {
         return cookieBannerTemplateService.updateTemplateDefault(id, cookieBannerTemplate);
     }
-
+*/
 
 
 

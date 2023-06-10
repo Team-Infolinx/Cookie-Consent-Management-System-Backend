@@ -25,6 +25,7 @@ public class CookieBanner {
     private String bannerPosition;
     private String bannerColor;
     private String bannerAlignment;
+    private String bannerTextColor;
 
     @OneToOne
     @JoinColumn(

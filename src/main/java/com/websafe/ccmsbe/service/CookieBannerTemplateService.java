@@ -36,12 +36,11 @@ public class CookieBannerTemplateService {
                 cookieBanner = new CookieBanner();
                 cookieBanner.setWebsite(website);
                 cookieBanner.setBannerAlignment("Right");
-                cookieBanner.setBannerColor("Dark Grey");
+                cookieBanner.setBannerColor("#263347");
                 cookieBanner.setBannerPosition("Center");
+                cookieBanner.setBannerTextColor("#ffffff");
                 cookieBannerRepository.save(cookieBanner);
 
-              /*  int NoOfReg = website.getPrivacyRegulations().size();
-                System.out.println("length = " + NoOfReg);*/
 
                 List<PrivacyRegulation> regulationList = new ArrayList<>();
                 regulationList.addAll(website.getPrivacyRegulations());
@@ -71,25 +70,25 @@ public class CookieBannerTemplateService {
         return null;
     }
 
-    public List<CookieBannerTemplate> getTemplateByID(Long bannerId) {
+   /* public List<CookieBannerTemplate> getTemplateByID(Long bannerId) {
         CookieBanner cookieBanner = cookieBannerRepository.findById(bannerId).orElse(null);
         if (cookieBanner != null) {
             return cookieBanner.getCookieBannerTemplates();
         }
         return null;
-    }
+    }*/
 
 
-    public CookieBannerTemplate saveNewTemplate(Long bannerId, CookieBannerTemplate cookieBannerTemplate) {
+    /*public CookieBannerTemplate saveNewTemplate(Long bannerId, CookieBannerTemplate cookieBannerTemplate) {
         CookieBanner cookieBanner = cookieBannerRepository.findById(bannerId).orElse(null);
         if (cookieBanner != null) {
             cookieBannerTemplate.setCookieBanner(cookieBanner);
             return cookieBannerTemplateRepository.save(cookieBannerTemplate);
         }
         return null;
-    }
+    }*/
 
-    public String deleteTemplate(Long id) {
+   /* public String deleteTemplate(Long id) {
         cookieBannerTemplateRepository.deleteById(id);
         return "Deletion success";
     }
@@ -97,7 +96,7 @@ public class CookieBannerTemplateService {
     public CookieBannerTemplate updateTemplate(CookieBannerTemplate cookieBannerTemplate) {
         return cookieBannerTemplateRepository.save(cookieBannerTemplate);
     }
-
+*/
 
     public CookieBannerTemplate updateByID(Long id, CookieBannerTemplate cookieBannerTemplate) {
         // Find the template with the given ID
@@ -117,19 +116,8 @@ public class CookieBannerTemplateService {
         return null;
     }
 
-    public CookieBannerTemplate updateTemplateDefault(Long id, CookieBannerTemplate cookieBannerTemplate) {
 
-        // Find the template with the given ID
-        Optional<CookieBannerTemplate> optionalTemplate = cookieBannerTemplateRepository.findById(id);
 
-        // If the template is found, update its properties and save it
-        if (optionalTemplate.isPresent()) {
-            CookieBannerTemplate template =optionalTemplate.get();
-            template.setTemplateDefault(cookieBannerTemplate.getTemplateDefault());
-            return cookieBannerTemplateRepository.save(template);
-        }
-        return null;
-    }
 
 
 
