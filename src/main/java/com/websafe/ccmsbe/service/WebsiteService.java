@@ -24,7 +24,7 @@ public class WebsiteService {
         this.cookieCategoryRepository = cookieCategoryRepository;
     }
 
-    public Website addWebsite(Long userId, Website website) {
+    public Website addWebsite(String userId, Website website) {
         website.setUserId(userId);
         Website websiteSaved =  websiteRepository.save(website);
         List<CookieCategory> defaultCategories = createDefaultCategories(websiteSaved);
@@ -63,11 +63,11 @@ public class WebsiteService {
         return defaultCategories;
     }
 
-    public List<Website> getWebsitesByUserId(Long userId) {
+    public List<Website> getWebsitesByUserId(String userId) {
         return websiteRepository.getWebsitesByUserId(userId);
     }
 
-    public Boolean deleteWebsite(Long userId, Long websiteId) {
+    public Boolean deleteWebsite(String userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
@@ -78,7 +78,7 @@ public class WebsiteService {
         return true;
     }
 
-    public Website updateWebsite(Long userId, Long websiteId, Website updatedWebsite) {
+    public Website updateWebsite(String userId, Long websiteId, Website updatedWebsite) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
@@ -90,7 +90,7 @@ public class WebsiteService {
         return websiteRepository.save(website);
     }
 
-    public Website getWebsiteByUserIdAndWebsiteId(Long userId, Long websiteId) {
+    public Website getWebsiteByUserIdAndWebsiteId(String userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
