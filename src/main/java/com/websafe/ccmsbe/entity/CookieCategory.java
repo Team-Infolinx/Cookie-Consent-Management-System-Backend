@@ -14,6 +14,7 @@ import java.util.List;
 @Entity(name = "CookieCategory")
 @Table(name = "cookie_category")
 public class CookieCategory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;

@@ -1,9 +1,11 @@
 package com.websafe.ccmsbe.entity;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.xml.catalog.Catalog;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @Entity(name = "Website")
 @Table(name = "website")
 public class Website {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long websiteId;
@@ -36,7 +39,7 @@ public class Website {
     @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "website_privacy_regulation",
             joinColumns = @JoinColumn(name = "website_id", foreignKey = @ForeignKey(name = "fk_website_id_p")),
@@ -67,4 +70,5 @@ public class Website {
         cookie.setWebsite(this);
         cookies.add(cookie);
     }
+
 }

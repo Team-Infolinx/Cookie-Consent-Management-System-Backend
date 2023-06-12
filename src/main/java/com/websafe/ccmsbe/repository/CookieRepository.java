@@ -8,6 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface CookieRepository extends JpaRepository<Cookie , Long> {
+
     @Query(value = "select count(cookie_id) FROM cookie where website_id=?1",nativeQuery = true)
     Integer getCookieByWebsiteId(String websiteId);
+
 }

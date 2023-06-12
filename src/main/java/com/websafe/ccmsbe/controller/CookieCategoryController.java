@@ -10,6 +10,7 @@ import java.util.List;
 @RequestMapping("/api/v1/websites/{websiteId}/cookie-categories")
 @CrossOrigin
 public class CookieCategoryController {
+
     private final CookieCategoryService cookieCategoryService;
 
     @Autowired
@@ -54,4 +55,5 @@ public class CookieCategoryController {
     ) {
         return cookieCategoryService.updateCookieCategory(websiteId, categoryId, cookieCategory);
     }
+
 }
