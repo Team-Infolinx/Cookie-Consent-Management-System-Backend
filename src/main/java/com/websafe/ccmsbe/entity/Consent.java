@@ -21,7 +21,7 @@ public class Consent {
     private Long consentId;
     private Date createdDate;
     private Time createdAt;
-    private String consent;
+    private String isGiven;
 
     @ManyToMany
     @JoinTable(
