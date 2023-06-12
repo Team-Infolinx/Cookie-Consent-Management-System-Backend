@@ -17,6 +17,7 @@ public class CookieCategoryController {
         this.cookieCategoryService = cookieCategoryService;
     }
 
+    @CrossOrigin("*")
     @GetMapping
     public List<CookieCategory> getCookieCategories(
             @PathVariable(name = "websiteId") Long websiteId
