@@ -42,7 +42,6 @@ public class PrivacyRegulation {
     @Column(name= "websites")
     private List<Website> websites = new ArrayList<>();
 
-
     @OneToMany(
             mappedBy = "privacyRegulation"
     )
