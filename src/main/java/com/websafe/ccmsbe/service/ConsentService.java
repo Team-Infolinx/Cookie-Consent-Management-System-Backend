@@ -9,9 +9,10 @@ import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +32,9 @@ public class ConsentService {
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
         Consent consent = new Consent();
-        consent.setCreatedDate(new Date());
+        LocalDate currentDate = LocalDate.now();
+        Date sql_date = Date.valueOf(currentDate);
+        consent.setCreatedDate(sql_date);
         consent.setCreatedAt(new Time(System.currentTimeMillis()));
         consent.setAllowedCookieCategories(allowedCategories);
         if (allowedCategories.size() == 0) {
