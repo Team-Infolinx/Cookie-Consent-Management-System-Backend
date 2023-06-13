@@ -70,5 +70,4 @@ public class Website {
         cookie.setWebsite(this);
         cookies.add(cookie);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.websafe.ccmsbe.controller;
 
 import com.websafe.ccmsbe.entity.PrivacyRegulation;
+import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.service.PrivacyRegulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/v1/website-management")
+@RequestMapping("/api/v1/website-management")
 public class PrivacyRegulationController {
     private final PrivacyRegulationService privacyRegulationService;
 
@@ -49,5 +50,12 @@ public class PrivacyRegulationController {
             @PathVariable(name = "regulationId") Long regulationId
     ){
         return privacyRegulationService.deletePrivacyRegulationFromWebsite(websiteId, regulationId);
+    }
+
+    @GetMapping("/{websiteId}/privacy-regulations")
+    public List<PrivacyRegulation> getPrivacyRegulationsFromWebsite(
+            @PathVariable(name = "websiteId") Long websiteId
+    ) {
+        return privacyRegulationService.getPrivacyRegulationsFromWebsite(websiteId);
     }
 }

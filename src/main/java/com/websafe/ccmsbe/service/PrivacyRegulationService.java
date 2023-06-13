@@ -2,6 +2,7 @@ package com.websafe.ccmsbe.service;
 
 import com.websafe.ccmsbe.entity.PrivacyRegulation;
 import com.websafe.ccmsbe.entity.Website;
+import com.websafe.ccmsbe.exception.WebsiteNotFoundException;
 import com.websafe.ccmsbe.repository.PrivacyRegulationRepository;
 import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,6 +150,22 @@ public class PrivacyRegulationService {
             throw e;
         } catch (Exception e) {
             throw new PrivacyRegulationUpdateException("An error occurred while updating the privacy regulation");
+        }
+    }
+
+    public List<PrivacyRegulation> getPrivacyRegulationsFromWebsite( Long websiteId  ) {
+        try {
+            List<Website> websites = websiteRepository.findByWebsiteId(websiteId);
+
+            if (websites.isEmpty()) {
+                throw new com.websafe.ccmsbe.exception.WebsiteNotFoundException("Website not found with ID: " + websiteId);
+            }
+            Website website = websites.get(0);
+            return website.getPrivacyRegulations();
+        } catch (com.websafe.ccmsbe.exception.WebsiteNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while retrieving privacy regulations from the website");
         }
     }
 }
