@@ -53,7 +53,7 @@ public class PrivacyRegulationController {
     }
 
     @GetMapping("/{websiteId}/privacy-regulations")
-    public List<Website> getPrivacyRegulationsFromWebsite(
+    public List<PrivacyRegulation> getPrivacyRegulationsFromWebsite(
             @PathVariable(name = "websiteId") Long websiteId
     ) {
         return privacyRegulationService.getPrivacyRegulationsFromWebsite(websiteId);

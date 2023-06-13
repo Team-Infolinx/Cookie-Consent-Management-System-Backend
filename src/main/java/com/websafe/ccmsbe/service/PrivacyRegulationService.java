@@ -153,14 +153,15 @@ public class PrivacyRegulationService {
         }
     }
 
-    public List<Website> getPrivacyRegulationsFromWebsite( Long websiteId  ) {
+    public List<PrivacyRegulation> getPrivacyRegulationsFromWebsite( Long websiteId  ) {
         try {
             List<Website> websites = websiteRepository.findByWebsiteId(websiteId);
 
             if (websites.isEmpty()) {
                 throw new com.websafe.ccmsbe.exception.WebsiteNotFoundException("Website not found with ID: " + websiteId);
             }
-            return websites;
+            Website website = websites.get(0);
+            return website.getPrivacyRegulations();
         } catch (com.websafe.ccmsbe.exception.WebsiteNotFoundException e) {
             throw e;
         } catch (Exception e) {

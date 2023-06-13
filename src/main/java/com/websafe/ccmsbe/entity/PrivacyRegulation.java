@@ -38,8 +38,8 @@ public class PrivacyRegulation {
     @ManyToMany(
             mappedBy = "privacyRegulations"
     )
-    @JsonBackReference
     @Column(name= "websites")
+    @JsonBackReference
     private List<Website> websites = new ArrayList<>();
 
     @OneToMany(
