@@ -1,9 +1,14 @@
 package com.websafe.ccmsbe.service;
 
+import com.websafe.ccmsbe.entity.CookieBanner;
+import com.websafe.ccmsbe.entity.CookieBannerTemplate;
 import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.exception.AccessDeniedException;
+import com.websafe.ccmsbe.exception.TemplateNotFoundException;
 import com.websafe.ccmsbe.exception.WebsiteNotFoundException;
+import com.websafe.ccmsbe.repository.CookieBannerRepository;
+import com.websafe.ccmsbe.repository.CookieBannerTemplateRepository;
 import com.websafe.ccmsbe.repository.CookieCategoryRepository;
 import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +22,15 @@ public class WebsiteService {
 
     private final WebsiteRepository websiteRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
+    private final CookieBannerRepository cookieBannerRepository;
+    private final CookieBannerTemplateRepository cookieBannerTemplateRepository;
 
     @Autowired
-    public WebsiteService(WebsiteRepository websiteRepository, CookieCategoryRepository cookieCategoryRepository) {
+    public WebsiteService(WebsiteRepository websiteRepository, CookieCategoryRepository cookieCategoryRepository, CookieBannerRepository cookieBannerRepository, CookieBannerTemplateRepository cookieBannerTemplateRepository) {
         this.websiteRepository = websiteRepository;
         this.cookieCategoryRepository = cookieCategoryRepository;
+        this.cookieBannerRepository = cookieBannerRepository;
+        this.cookieBannerTemplateRepository = cookieBannerTemplateRepository;
     }
 
     public Website addWebsite(String userId, Website website) {
