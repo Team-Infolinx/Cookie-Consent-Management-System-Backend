@@ -7,9 +7,8 @@ import com.websafe.ccmsbe.repository.WebsiteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -24,23 +23,66 @@ public class AnalyticsService {
     @Autowired
     private WebsiteRepository websiteRepo;
 
-    public Integer getNumOfCookies(String websiteId){
-        return cookieRepo.getCookieByWebsiteId(websiteId);
+    public Boolean isNumber(String str){
+        try {
+            double number = Double.parseDouble(str);
+            return number != 0.0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
+    public Integer getNumOfCookies(String websiteId){
+        int numOfCookies= cookieRepo.getCookieByWebsiteId(websiteId);
+        if (isNumber(String.valueOf(numOfCookies))){
+            return numOfCookies;
+        }
+        else{
+                return 0;
+            }
+        }
+
+
     public Integer getNumOfConsent(String websiteId){
-        return consentRepo.getConsentByWebsiteId(websiteId);
+        int numOfConsent= consentRepo.getConsentByWebsiteId(websiteId);
+        if (isNumber(String.valueOf(numOfConsent))){
+            return numOfConsent;
+        }
+        else{
+            return 0;
+        }
     }
 
     public Integer getNumOfAcceptedConsent(String websiteId){
-        return consentRepo.getAcceptedConsentByWebsiteId(websiteId);
+        int numOfAcceptedConsent= consentRepo.getAcceptedConsentByWebsiteId(websiteId);
+        if (isNumber(String.valueOf(numOfAcceptedConsent))){
+            return numOfAcceptedConsent;
+        }
+        else{
+            return 0;
+        }
     }
 
     public Float getAcceptanceRate(String websiteId){
-        return (((float)consentRepo.getAcceptedConsentByWebsiteId(websiteId)/consentRepo.getConsentByWebsiteId(websiteId))*100);
+        int numOfAcceptedConsent= consentRepo.getAcceptedConsentByWebsiteId(websiteId);
+        int numOfTotalConsent=consentRepo.getConsentByWebsiteId(websiteId);
+        if (isNumber(String.valueOf(numOfAcceptedConsent)) && isNumber(String.valueOf(numOfTotalConsent))){
+            return (((float)numOfAcceptedConsent/numOfTotalConsent)*100);
+        }
+        else{
+            return (float)0;
+        }
     }
 
     public List<Website> getWebsites(){
         return websiteRepo.findAll();
+    }
+
+    public List<Integer> getWebsiteVisits(String websiteId){
+        return consentRepo.getConsentCountGroupByDate(websiteId);
+    }
+
+    public List<Date>getWebsiteVisitsDates(String websiteId){
+        return consentRepo.getConsentDatesByWebsiteId(websiteId);
     }
 }

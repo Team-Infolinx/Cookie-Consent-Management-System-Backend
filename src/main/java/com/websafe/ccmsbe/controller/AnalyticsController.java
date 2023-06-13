@@ -1,8 +1,11 @@
 package com.websafe.ccmsbe.controller;
+import com.websafe.ccmsbe.entity.Consent;
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.service.AnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -13,7 +16,6 @@ public class AnalyticsController {
     @Autowired
     private AnalyticsService analyticsService;
 
-//    This is a comment
 
     @GetMapping("/getNoOfCookies/{websiteId}")
     public Integer getNoOfCookies(@PathVariable String websiteId){
@@ -36,8 +38,18 @@ public class AnalyticsController {
     }
 
     @GetMapping("/getWebsites")
-    List<Website> getAllWebsites(){
+    public List<Website> getAllWebsites(){
         return analyticsService.getWebsites();
+    }
+
+    @GetMapping("/getWebsiteVisitsCount/{websiteId}")
+    public List<Integer> getAllWebsiteVisits(@PathVariable String websiteId){
+        return analyticsService.getWebsiteVisits(websiteId);
+    }
+
+    @GetMapping("/getWebsiteVisitsdates/{websiteId}")
+    public List<Date> getAllWebsiteVisitsDates(@PathVariable String websiteId){
+        return analyticsService.getWebsiteVisitsDates(websiteId);
     }
 
 }

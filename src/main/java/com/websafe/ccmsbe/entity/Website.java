@@ -39,6 +39,14 @@ public class Website {
     @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "website",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
+    )
+    @JsonBackReference
+    private List<ConsentCategory> consentCategories = new ArrayList<>();
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "website_privacy_regulation",
