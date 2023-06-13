@@ -37,4 +37,12 @@ public class CookieCategory {
     @JsonBackReference
     private List<Cookie> cookies = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "allowedCookieCategories")
+    @JsonBackReference("allowed-consents")
+    private List<Consent> allowedByConsents = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "rejectedCookieCategories")
+    @JsonBackReference("rejected consents")
+    private List<Consent> rejectedByConsents = new ArrayList<>();
+
 }

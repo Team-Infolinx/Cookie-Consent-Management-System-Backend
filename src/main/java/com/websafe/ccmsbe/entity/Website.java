@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.xml.catalog.Catalog;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Website {
     private Long websiteId;
     private String configName;
     private String domain;
-    private Long userId;
+    private String userId;
 
     @OneToMany(
             mappedBy = "website",
@@ -38,6 +37,14 @@ public class Website {
     )
     @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "website",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
+    )
+    @JsonBackReference
+    private List<ConsentCategory> consentCategories = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

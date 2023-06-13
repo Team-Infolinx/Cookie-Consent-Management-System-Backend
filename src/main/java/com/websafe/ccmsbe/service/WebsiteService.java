@@ -1,9 +1,14 @@
 package com.websafe.ccmsbe.service;
 
+import com.websafe.ccmsbe.entity.CookieBanner;
+import com.websafe.ccmsbe.entity.CookieBannerTemplate;
 import com.websafe.ccmsbe.entity.CookieCategory;
 import com.websafe.ccmsbe.entity.Website;
 import com.websafe.ccmsbe.exception.AccessDeniedException;
+import com.websafe.ccmsbe.exception.TemplateNotFoundException;
 import com.websafe.ccmsbe.exception.WebsiteNotFoundException;
+import com.websafe.ccmsbe.repository.CookieBannerRepository;
+import com.websafe.ccmsbe.repository.CookieBannerTemplateRepository;
 import com.websafe.ccmsbe.repository.CookieCategoryRepository;
 import com.websafe.ccmsbe.repository.WebsiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +22,18 @@ public class WebsiteService {
 
     private final WebsiteRepository websiteRepository;
     private final CookieCategoryRepository cookieCategoryRepository;
+    private final CookieBannerRepository cookieBannerRepository;
+    private final CookieBannerTemplateRepository cookieBannerTemplateRepository;
 
     @Autowired
-    public WebsiteService(WebsiteRepository websiteRepository, CookieCategoryRepository cookieCategoryRepository) {
+    public WebsiteService(WebsiteRepository websiteRepository, CookieCategoryRepository cookieCategoryRepository, CookieBannerRepository cookieBannerRepository, CookieBannerTemplateRepository cookieBannerTemplateRepository) {
         this.websiteRepository = websiteRepository;
         this.cookieCategoryRepository = cookieCategoryRepository;
+        this.cookieBannerRepository = cookieBannerRepository;
+        this.cookieBannerTemplateRepository = cookieBannerTemplateRepository;
     }
 
-    public Website addWebsite(Long userId, Website website) {
+    public Website addWebsite(String userId, Website website) {
         website.setUserId(userId);
         Website websiteSaved =  websiteRepository.save(website);
         List<CookieCategory> defaultCategories = createDefaultCategories(websiteSaved);
@@ -63,11 +72,11 @@ public class WebsiteService {
         return defaultCategories;
     }
 
-    public List<Website> getWebsitesByUserId(Long userId) {
+    public List<Website> getWebsitesByUserId(String userId) {
         return websiteRepository.getWebsitesByUserId(userId);
     }
 
-    public Boolean deleteWebsite(Long userId, Long websiteId) {
+    public Boolean deleteWebsite(String userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
@@ -78,7 +87,7 @@ public class WebsiteService {
         return true;
     }
 
-    public Website updateWebsite(Long userId, Long websiteId, Website updatedWebsite) {
+    public Website updateWebsite(String userId, Long websiteId, Website updatedWebsite) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
@@ -90,7 +99,7 @@ public class WebsiteService {
         return websiteRepository.save(website);
     }
 
-    public Website getWebsiteByUserIdAndWebsiteId(Long userId, Long websiteId) {
+    public Website getWebsiteByUserIdAndWebsiteId(String userId, Long websiteId) {
         Website website = websiteRepository.findById(websiteId).orElseThrow(
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );

@@ -19,26 +19,26 @@ public class WebsiteController {
     }
 
     @GetMapping
-    public List<Website> getAllWebsitesByUserId(@PathVariable(name = "userId") Long userId) {
+    public List<Website> getAllWebsitesByUserId(@PathVariable(name = "userId") String userId) {
         return websiteService.getWebsitesByUserId(userId);
     }
 
     @GetMapping("/{websiteId}")
     public Website getWebsiteByUserIdAndWebsiteId(
-            @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "userId") String userId,
             @PathVariable(name = "websiteId") Long websiteId
     ) {
         return websiteService.getWebsiteByUserIdAndWebsiteId(userId,websiteId);
     }
 
     @PostMapping
-    public Website addWebsite(@PathVariable(name = "userId") Long userId, @RequestBody Website website){
+    public Website addWebsite(@PathVariable(name = "userId") String userId, @RequestBody Website website){
         return websiteService.addWebsite(userId,website);
     }
 
     @DeleteMapping("/{websiteId}")
     public Boolean deleteWebsite(
-            @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "userId") String userId,
             @PathVariable(name = "websiteId") Long websiteId
     ){
         return websiteService.deleteWebsite(userId,websiteId);
@@ -46,7 +46,7 @@ public class WebsiteController {
 
     @PutMapping("/{websiteId}")
     public Website updateWebsite(
-            @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "userId") String userId,
             @PathVariable(name = "websiteId") Long websiteId,
             @RequestBody Website website
 
