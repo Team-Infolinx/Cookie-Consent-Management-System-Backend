@@ -34,15 +34,12 @@ public class ConsentService {
         consent.setCreatedDate(new Date());
         consent.setCreatedAt(new Time(System.currentTimeMillis()));
         consent.setAllowedCookieCategories(allowedCategories);
-        if (allowedCategories == null) {
+        if (allowedCategories.size() == 0) {
             consent.setIsGiven("false");
         }else {
             consent.setIsGiven("true");
         }
-        List<Consent> consents = website.getConsent();
-        consents.add(consent);
-        website.setConsent(consents);
-        websiteRepository.save(website);
+        consent.setWebsite(website);
         return consentRepository.save(consent);
     }
 

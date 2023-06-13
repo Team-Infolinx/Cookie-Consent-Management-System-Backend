@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class Consent {
 
     @ManyToMany
     @JoinTable(
-            name = "consent_allowed_categories",
+            name = "allowed_cookie_categories",
             joinColumns = @JoinColumn(name = "consent_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
@@ -33,10 +34,19 @@ public class Consent {
 
     @ManyToMany
     @JoinTable(
-            name = "consent_rejected_categories",
+            name = "rejected_cookie_categories",
             joinColumns = @JoinColumn(name = "consent_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<CookieCategory> rejectedCookieCategories = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(
+            name = "website_id",
+            referencedColumnName = "websiteId",
+            foreignKey = @ForeignKey(name = "website_id_consent")
+    )
+    @JsonBackReference
+    private Website website;
 
 }
