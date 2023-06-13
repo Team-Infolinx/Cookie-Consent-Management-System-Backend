@@ -26,7 +26,7 @@ public class Consent {
 
     @ManyToMany
     @JoinTable(
-            name = "consent_allowed_categories",
+            name = "allowed_cookie_categories",
             joinColumns = @JoinColumn(name = "consent_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
@@ -34,7 +34,7 @@ public class Consent {
 
     @ManyToMany
     @JoinTable(
-            name = "consent_rejected_categories",
+            name = "rejected_cookie_categories",
             joinColumns = @JoinColumn(name = "consent_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )

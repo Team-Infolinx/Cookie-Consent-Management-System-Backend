@@ -31,7 +31,7 @@ public class ConsentService {
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
         Consent consent = new Consent();
-        consent.setCreatedDate(new Date());
+//        consent.setCreatedDate(new Date());
         consent.setCreatedAt(new Time(System.currentTimeMillis()));
         consent.setAllowedCookieCategories(allowedCategories);
         if (allowedCategories == null) {
