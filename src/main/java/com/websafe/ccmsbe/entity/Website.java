@@ -62,10 +62,8 @@ public class Website {
     @JsonBackReference("website-cookie-banner")
     private CookieBanner cookieBanner;
 
-    @OneToMany(
-            cascade = CascadeType.REMOVE,
-            mappedBy = "website"
-    )
+    @OneToMany(targetEntity = Consent.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "websiteId",referencedColumnName = "websiteId")
     private List<Consent> consent;
 
     // Related to adding new cookie categories to the website.
