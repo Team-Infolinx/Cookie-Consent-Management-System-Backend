@@ -21,7 +21,7 @@ public class Website {
     private Long websiteId;
     private String configName;
     private String domain;
-    private Long userId;
+    private String userId;
 
     @OneToMany(
             mappedBy = "website",

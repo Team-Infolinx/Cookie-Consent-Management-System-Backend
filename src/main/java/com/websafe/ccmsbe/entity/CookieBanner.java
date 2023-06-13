@@ -38,7 +38,8 @@ public class CookieBanner {
     private Website website;
 
     @OneToMany(
-            mappedBy = "cookieBanner"
+            mappedBy = "cookieBanner",
+            cascade = CascadeType.REMOVE
     )
     @JsonBackReference("banner template")
     private List<CookieBannerTemplate> cookieBannerTemplates = new ArrayList<>();
