@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,18 +31,17 @@ public class ConsentService {
                 () -> new WebsiteNotFoundException("Website not found with id " + websiteId)
         );
         Consent consent = new Consent();
-//        consent.setCreatedDate(new Date());
+        LocalDate currentDate = LocalDate.now();
+        java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
+        consent.setCreatedDate(sqlDate);
         consent.setCreatedAt(new Time(System.currentTimeMillis()));
         consent.setAllowedCookieCategories(allowedCategories);
-        if (allowedCategories == null) {
+        if (allowedCategories == null || allowedCategories.isEmpty()) {
             consent.setIsGiven("false");
         }else {
             consent.setIsGiven("true");
         }
-        List<Consent> consents = website.getConsent();
-        consents.add(consent);
-        website.setConsent(consents);
-        websiteRepository.save(website);
+        consent.setWebsite(website);
         return consentRepository.save(consent);
     }
 

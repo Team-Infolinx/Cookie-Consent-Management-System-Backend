@@ -12,6 +12,7 @@ public class CookieBannerController {
     @Autowired
     private CookieBannerService cookieBannerService;
 
+    @CrossOrigin("*")
     @GetMapping("/{websiteId}")
     public CookieBanner getCookieBanner(@PathVariable(name="websiteId") Long websiteId){
         return cookieBannerService.getCookieBanner(websiteId);

@@ -1,5 +1,6 @@
 package com.websafe.ccmsbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,5 +40,14 @@ public class Consent {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<CookieCategory> rejectedCookieCategories = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(
+            name = "website_id",
+            referencedColumnName = "websiteId",
+            foreignKey = @ForeignKey(name = "website_id_consent")
+    )
+    @JsonBackReference
+    private Website website;
 
 }
