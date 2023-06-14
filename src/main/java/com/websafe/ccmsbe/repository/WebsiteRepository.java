@@ -11,6 +11,7 @@ public interface WebsiteRepository extends JpaRepository<Website , Long> {
 
     @Query
     public List<Website> getWebsitesByUserId(String userId);
-  
+
     List<Website> findByWebsiteId(Long websiteId);
+
 }

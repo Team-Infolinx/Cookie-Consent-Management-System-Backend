@@ -37,11 +37,6 @@ public class AnalyticsController {
         return analyticsService.getAcceptanceRate(websiteId);
     }
 
-    @GetMapping("/getWebsites")
-    public List<Website> getAllWebsites(){
-        return analyticsService.getWebsites();
-    }
-
     @GetMapping("/getWebsiteVisitsCount/{websiteId}")
     public List<Integer> getAllWebsiteVisits(@PathVariable String websiteId){
         return analyticsService.getWebsiteVisits(websiteId);
