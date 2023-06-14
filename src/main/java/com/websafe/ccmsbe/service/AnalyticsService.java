@@ -20,8 +20,6 @@ public class AnalyticsService {
     @Autowired
     private ConsentRepository consentRepo;
 
-    @Autowired
-    private WebsiteRepository websiteRepo;
 
     public Boolean isNumber(String str){
         try {
@@ -67,16 +65,14 @@ public class AnalyticsService {
         int numOfAcceptedConsent= consentRepo.getAcceptedConsentByWebsiteId(websiteId);
         int numOfTotalConsent=consentRepo.getConsentByWebsiteId(websiteId);
         if (isNumber(String.valueOf(numOfAcceptedConsent)) && isNumber(String.valueOf(numOfTotalConsent))){
-            return (((float)numOfAcceptedConsent/numOfTotalConsent)*100);
+            String formattedRate=String.format("%.2f",(((float)numOfAcceptedConsent/numOfTotalConsent)*100));
+            return Float.parseFloat(formattedRate);
         }
         else{
             return (float)0;
         }
     }
 
-    public List<Website> getWebsites(){
-        return websiteRepo.findAll();
-    }
 
     public List<Integer> getWebsiteVisits(String websiteId){
         return consentRepo.getConsentCountGroupByDate(websiteId);
@@ -85,4 +81,6 @@ public class AnalyticsService {
     public List<Date>getWebsiteVisitsDates(String websiteId){
         return consentRepo.getConsentDatesByWebsiteId(websiteId);
     }
+
+
 }
