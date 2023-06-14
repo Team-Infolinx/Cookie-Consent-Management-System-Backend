@@ -37,11 +37,11 @@ public class CookieCategory {
     @JsonBackReference
     private List<Cookie> cookies = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "allowedCookieCategories")
+    @ManyToMany(mappedBy = "allowedCookieCategories", cascade = CascadeType.REMOVE)
     @JsonBackReference("allowed-consents")
     private List<Consent> allowedByConsents = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "rejectedCookieCategories")
+    @ManyToMany(mappedBy = "rejectedCookieCategories", cascade = CascadeType.REMOVE)
     @JsonBackReference("rejected consents")
     private List<Consent> rejectedByConsents = new ArrayList<>();
 
